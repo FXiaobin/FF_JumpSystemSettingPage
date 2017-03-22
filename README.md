@@ -1,0 +1,2 @@
+# JumpSystemSettingPage
+从APP跳转到对应的设置页面
