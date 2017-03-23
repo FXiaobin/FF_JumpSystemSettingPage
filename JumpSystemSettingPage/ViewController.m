@@ -265,6 +265,16 @@ static NSString *KUITableViewCell = @"UITableViewCell";
 
 - (void)openURLWithURLString:(NSString *)urlString isApp:(BOOL)isApp{
     
+    if ([[UIDevice currentDevice].systemVersion compare:@"10"] == NSOrderedDescending) {
+        UIAlertController *av = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"iOS 10 已经不支持从应用跳转到设置页面了" preferredStyle:UIAlertControllerStyleAlert];
+        [av addAction:[UIAlertAction actionWithTitle:@"👌" style:UIAlertActionStyleDefault handler:nil]];
+        
+        [self presentViewController:av animated:YES completion:nil];
+        
+        return;
+    }
+    
+    
     NSString *str = [NSString stringWithFormat:@"prefs:root=%@",urlString];;
     if (isApp) {
         ///此app的标记 (前提是此app已经注册通知了)
